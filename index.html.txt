@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'm Sorry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-image: url('https://wallpapercave.com/wp/wp10475491.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .bg-overlay {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(5px);
+      transition: opacity 1s ease-in-out;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: float 5s infinite ease-in;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-600px) rotate(45deg); opacity: 0; }
+    }
+    .next-button {
+      position: fixed;
+      right: 20px;
+      bottom: 40px;
+      z-index: 50;
+    }
+    .fade-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body class="text-gray-800 font-sans relative overflow-hidden">
+
+  <script>
+    // Create floating hearts
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.top = `${Math.random() * 100 + 100}vh`;
+      heart.style.animationDuration = `${Math.random() * 3 + 3}s`;
+      heart.style.opacity = Math.random();
+      document.body.appendChild(heart);
+    }
+
+    // Observe fade in
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll(".fade-section");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+
+  <!-- Page 1: Apology -->
+  <div class="min-h-screen flex items-center justify-center p-6 fade-section" id="page1">
+    <div class="bg-overlay shadow-2xl rounded-2xl p-8 max-w-xl w-full text-center">
+      <h1 class="text-4xl font-bold text-pink-600 mb-4">I'm Sorry</h1>
+      <p class="text-lg mb-6">Hey Bebo ji,</p>
+      <p class="mb-6">I know I messed up. I've been thinking a lot about everything, and I realize how much I hurt you. You mean the world to me, and I never want to lose you. This little page is just my way of saying I'm truly sorry. I miss you more than words can say.</p>
+      <p class="italic text-gray-600 mb-6">— Yours, Aaruu</p>
+      <div class="space-x-4">
+        <a href="#memories" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full transition">See Our Memories</a>
+        <a href="#letter" class="bg-pink-400 hover:bg-pink-500 text-white px-6 py-2 rounded-full transition">Read My Letter</a>
+      </div>
+    </div>
+    <div class="next-button">
+      <a href="#memories" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full shadow-lg">Next ➡️</a>
+    </div>
+  </div>
+
+  <!-- Page 2: Memories -->
+  <div id="memories" class="bg-overlay py-12 px-4 fade-section">
+    <h2 class="text-3xl text-center font-bold text-pink-500 mb-8">Our Memories</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+      <img src="/mnt/data/IMG_0974.jpeg" alt="memory 1" class="rounded-xl shadow-md">
+      <img src="/mnt/data/IMG_4013.png" alt="memory 2" class="rounded-xl shadow-md">
+      <img src="/mnt/data/IMG_4839.jpeg" alt="memory 3" class="rounded-xl shadow-md">
+    </div>
+    <div class="text-center mt-8">
+      <a href="#" class="text-pink-600 underline">Back to Start</a>
+      <a href="#letter" class="ml-4 text-pink-600 underline">Next: Letter</a>
+    </div>
+  </div>
+
+  <!-- Page 3: Letter -->
+  <div id="letter" class="bg-overlay py-12 px-4 fade-section">
+    <h2 class="text-3xl text-center font-bold text-pink-500 mb-6">A Letter from My Heart</h2>
+    <div class="max-w-3xl mx-auto text-lg text-gray-700 space-y-4">
+      <p>Dear Harshita,</p>
+      <p>I’ve been doing a lot of thinking lately, and I felt like I needed to say a few things. I know things didn’t end the way either of us wanted, and I take full responsibility for the hurt I caused. I’m truly sorry for the times I didn’t show up the way I should have, for the times I made you feel alone or misunderstood. That was never my intention.</p>
+      <p>At the same time, I hope you can see that it wasn’t always easy for me either. There were moments when it felt like we were both slipping, not just one of us. But honestly, none of that matters more than how much I still care about you — and how much I miss what we had.</p>
+      <p>I’m not writing this to reopen old wounds, but because I still believe in us. I believe that if we’re both willing to try — really try — we can fix this. I know love isn’t always easy, but if it’s real, it’s worth it. And I believe what we had was real.</p>
+      <p>If you’re open to it, I’d love to talk. No pressure, no expectations — just two people who once meant everything to each other seeing if we can find our way again.</p>
+      <p>Take your time. I’ll be here.</p>
+      <p class="italic">— Yours Aaryaveer</p>
+    </div>
+    <div class="text-center mt-8">
+      <a href="#memories" class="text-pink-600 underline">Back to Memories</a>
+      <a href="#contact" class="ml-4 text-pink-600 underline">Next: Contact Me</a>
+    </div>
+  </div>
+
+  <!-- Page 4: Contact -->
+  <div id="contact" class="bg-overlay text-center py-12 fade-section">
+    <h3 class="text-2xl font-semibold mb-2 text-pink-600">Still want to talk?</h3>
+    <p class="mb-4">If you're ready, I'd love to talk and listen. No pressure, just love. ❤️</p>
+    <a href="mailto:your@email.com" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full">call me</a>
+    <div class="mt-6">
+      <a href="#" class="text-pink-600 underline">Back to Start</a>
+    </div>
+  </div>
+</body>
+</html>
